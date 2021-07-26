@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Web Developer">
+  <title>Griffin Potts</title>
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" crossorigin
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>Griffin Potts</h1>
+      <h2>Web Developer</h2>
+      <a id="emailLink" href="mailto:griffin.m.potts@gmail.com">griffin.m.potts@gmail.com</a><br />
+      <a href="https://github.com/gmp96c"><img alt="Github Profile" src="githubLogo.png"
+          href="https://github.com/gmp96c" /></a>
+    </header>
+    <section id="tech">
+      <div class="sectionHeader">
+        <hr />
+        <h3>Technology</h3>
+        <hr />
+      </div>
+      <ul id="techList">
+      </ul>
+    </section>
+    <section id="projects">
+      <div class="sectionHeader">
+        <hr />
+        <h3>Projects</h3>
+        <hr />
+      </div>
+      <ul id="projectList">
+      </ul>
+    </section>
+  </main>
+  <script>
+    function generateProject(name, description, technology, live, repo) {
+      return ({
+        name,
+        description,
+        technology,
+        live,
+        repo
+      })
+    };
+    const projects = [
+      generateProject('Task Log',
+        "Authenticated users create a list from tasks created by other users, or create a new one. Once they've added a task they are able to create log entries for the task. They are able to add tips for other users, and see what tips other users recommend and pin the ones they find useful. Tips are shown in order of how many other users have pinned them.",
+        ['React', 'TypeScript', "Node.js", 'Keystone.js', 'GraphQL', 'PostgreSQL', 'Styled-Components', 'Parcel',
+          'Apollo Client', 'Jest', 'React Testing Library'
+        ], 'https://task.gmpotts.com/', 'https://github.com/gmp96c/task-log'),
+      generateProject('DS Inventory',
+        "A variation on an inventory system from a game. Data acquired by webscraping different wiki pages and databases, and compiling information.",
+        ['React', 'Styled-Components', 'Parcel', 'Node.js', 'Cheerio.js'], 'https://inv.gmpotts.com/',
+        'https://github.com/gmp96c/DS-Inventory'),
+    ];
+    let techs = new Set([...projects.reduce((acc, cur) => [...acc, ...cur.technology],
+      []), 'Ionic', 'Capacitor', 'Express', 'Axios', 'Postman', 'MJML', 'Parse', 'jQuery'])
+    const techNode = document.querySelector('#techList');
+    Array.from(techs).forEach(tech => {
+      let listItem = document.createElement('li');
+      listItem.className = 'techItem';
+      listItem.append(tech);
+      techNode.append(listItem);
+    })
+    const listNode = document.querySelector('#projectList');
+    projects.forEach(project => {
+      //create base project item
+      let listItem = document.createElement('li');
+      listItem.className = 'projectItem';
+      //Create each element of a project item and set attributes
+      let header = document.createElement('h4');
+      header.append(project.name);
+      header.className = "projectHeader";
+      let description = document.createElement('p');
+      description.append(project.description)
+      description.className = "projectDescription"
+      let technologyList = document.createElement('ul');
+      technologyList.className = "projectTechList";
+      project.technology.forEach((tech, i) => {
+        let techItem = document.createElement('li');
+        techItem.append(tech);
+        techItem.className = "techItem";
+        technologyList.append(techItem);
+      });
+      let linkList = document.createElement('div');
+      linkList.className = 'links';
+      let liveLink = document.createElement('a');
+      liveLink.href = project.live;
+      liveLink.append('Live');
+      linkList.append(liveLink);
+      let repoLink = document.createElement('a');
+      repoLink.href = project.repo;
+      repoLink.append('Repo');
+      linkList.append(repoLink);
+      let hr = document.createElement('hr');
+      hr.className = "projectHr";
+      //Append all relevant elements
+      [header, description, technologyList, hr, linkList].forEach(item => {
+        listItem.append(item);
+      });
+      listNode.append(listItem);
+    })
+  </script>
+</body>
+
+</html>
