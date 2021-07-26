@@ -66,6 +66,7 @@
         ['React', 'Styled-Components', 'Parcel', 'Node.js', 'Cheerio.js'], 'https://inv.gmpotts.com/',
         'https://github.com/gmp96c/DS-Inventory'),
     ];
+    //Creates list of technologies used in projects, as well as ones I've used at work
     let techs = new Set([...projects.reduce((acc, cur) => [...acc, ...cur.technology],
       []), 'Ionic', 'Capacitor', 'Express', 'Axios', 'Postman', 'MJML', 'Parse', 'jQuery'])
     const techNode = document.querySelector('#techList');
