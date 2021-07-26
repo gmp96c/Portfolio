@@ -57,7 +57,7 @@
     };
     const projects = [
       generateProject('Task Log',
-        "Authenticated users create a list from tasks created by other users, or create a new one. Once they've added a task they are able to create log entries for the task. They are able to add tips for other users, and see what tips other users recommend and pin the ones they find useful. Tips are shown in order of how many other users have pinned them.",
+        "Authenticated users can compile a list of tasks created by themselves or others. Once they've added a task they are able to create log entries for the task. They are able to add tips for other users, and see what tips other users recommend and pin the ones they find useful. Tips are shown in order of how many other users have pinned them.",
         ['React', 'TypeScript', "Node.js", 'Keystone.js', 'GraphQL', 'PostgreSQL', 'Styled-Components', 'Parcel',
           'Apollo Client', 'Jest', 'React Testing Library'
         ], 'https://task.gmpotts.com/', 'https://github.com/gmp96c/task-log'),
@@ -66,7 +66,7 @@
         ['React', 'Styled-Components', 'Parcel', 'Node.js', 'Cheerio.js'], 'https://inv.gmpotts.com/',
         'https://github.com/gmp96c/DS-Inventory'),
     ];
-    //Creates list of technologies used in projects, as well as ones I've used at work
+    //Creates list of technologies used in projects, as well as ones I've used at work. Then append.
     let techs = new Set([...projects.reduce((acc, cur) => [...acc, ...cur.technology],
       []), 'Ionic', 'Capacitor', 'Express', 'Axios', 'Postman', 'MJML', 'Parse', 'jQuery'])
     const techNode = document.querySelector('#techList');
